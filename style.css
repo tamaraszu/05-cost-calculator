@@ -95,3 +95,31 @@ h1 {
 p {
   font-size: 19.2px; 
 }
+#delivery-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px auto 18px;
+  padding: 12px 20px;
+  background: white;
+  border: 2px dashed #d63600;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #5c3118;
+  font-weight: 600;
+  font-size: 16px;
+  max-width: 220px;
+  transition: background 0.3s ease;
+}
+ 
+#delivery-option:hover {
+  background: #fdf4e9;
+}
+ 
+#delivery-option input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #d63600;
+  cursor: pointer;
+}
