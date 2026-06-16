@@ -1,5 +1,9 @@
-// Base price for every pizza, before any toppings are added
-const BASE_PRICE = 10;
+// Base price per size — small is the default $10, medium adds $2, large adds $4
+const SIZE_PRICES = {
+  small:  10,
+  medium: 12,
+  large:  14,
+};
 
 // Extra cost added for each topping the customer selects
 const TOPPING_PRICE = 2;
@@ -9,9 +13,9 @@ const DELIVERY_FEE = 5;
 
 /**
  * Calculates the total cost of a pizza order.
- * @param {number} basePrice - The starting price of the pizza.
+ * @param {number} basePrice   - The starting price based on the selected size.
  * @param {number} toppingCount - How many toppings were selected.
- * @param {boolean} isDelivery - Whether the customer chose delivery.
+ * @param {boolean} isDelivery  - Whether the customer chose delivery.
  * @returns {number} The final total price.
  */
 function calculateTotal(basePrice, toppingCount, isDelivery) {
@@ -31,6 +35,10 @@ form.addEventListener("submit", function (event) {
   // Prevent the page from reloading when the form is submitted
   event.preventDefault();
 
+  // Read the selected size from the dropdown and look up its base price
+  const selectedSize = document.getElementById("size").value;
+  const basePrice = SIZE_PRICES[selectedSize];
+
   // Collect all checked topping checkboxes into an array
   const checkedToppings = Array.from(
     document.querySelectorAll('input[name="topping"]:checked')
@@ -43,7 +51,7 @@ form.addEventListener("submit", function (event) {
   const isDelivery = document.getElementById("delivery").checked;
 
   // Calculate the total using our function
-  const total = calculateTotal(BASE_PRICE, toppingCount, isDelivery);
+  const total = calculateTotal(basePrice, toppingCount, isDelivery);
 
   // Show the result on the page
   totalDisplay.textContent = `Total: $${total}`;
